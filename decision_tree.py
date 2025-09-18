@@ -57,6 +57,19 @@ clf = tree.DecisionTreeClassifier(criterion='entropy')
 clf = clf.fit(X, Y)
 
 #plotting the decision tree
-tree.plot_tree(clf, feature_names=['Age', 'Spectacle', 'Astigmatism', 'Tear'], class_names=['Yes','No'], filled=True, rounded=True)
+# cleaner plot (no impurity, show proportions, round numbers)
+plt.figure(figsize=(9, 6))
+tree.plot_tree(
+    clf,
+    feature_names=['Age', 'Spectacle', 'Astigmatism', 'Tear'],
+    class_names=['Yes','No'],
+    filled=True,
+    rounded=True,
+    impurity=True,     # show entropy
+    proportion=True,    # node values become class proportions
+    precision=2,        # fewer decimals
+    fontsize=10
+)
+plt.title("Contact Lens Recommendation Decision Tree")
 plt.show()
 
